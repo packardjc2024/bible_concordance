@@ -91,14 +91,14 @@ class TestCleanBook:
     def test_cleanbook_shouldpass(self):
         """
         Checks that the number of keys is equal to the total amount of verses
-        in the Book of Galatians.
+        in the selected book.
         """
         assert len(self.book_dict) == self.number_verses
 
     def test_cleanbook_last_number_shouldpass(self):
         """
-        Checks that the last key in the list is the last verse in the Book of
-        Galatians.
+        Checks that the last key in the list is the last verse in the selected
+        book.
         """
         last_number = list(self.book_dict.keys())[-1]
         assert last_number == self.last_verse_number
@@ -106,7 +106,7 @@ class TestCleanBook:
     def test_cleanbook_last_verse_shouldpass(self):
         """
         Checks that the verse text in the last value in the list is the same as
-        the desired result for the last verse in the Book of Galatians.
+        the desired result for the last verse in the selected book.
         """
         last_verse = list(self.book_dict.values())[-1]
         assert last_verse == self.last_verse_string
