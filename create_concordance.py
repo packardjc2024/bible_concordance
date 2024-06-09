@@ -23,7 +23,6 @@ for key, value in kjv_bible.items():
 with open('kjv_bible.json', 'w') as bible_file:
     json.dump(kjv_bible, bible_file)
 
-
 # Save the summary dict to a file
 with open('summary.json', 'w') as summary_file:
     json.dump(summary_dict, summary_file)

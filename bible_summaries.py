@@ -3,7 +3,6 @@ This module gathers summaries about a book and returns a dictionary that can be
 used in searching for specific chapters and verses.
 """
 
-
 import re
 from scraper import ScrapeHTMLBible
 
@@ -68,9 +67,8 @@ class BookSummary:
         self.get_chapters_verses()
         self.get_words()
         self.calculate_words_count()
-        self.summary[self.book_name] = {'number_chapters': self.number_chapters,
-                                        'chapter_verses': self.chapters_verses_dict,
-                                        'words_count': self.words_count,
-                                        'words_list': self.words}
+        self.summary.update({'number_chapters': self.number_chapters,
+                             'chapter_verses': self.chapters_verses_dict,
+                             'words_count': self.words_count,
+                             'words_list': self.words})
         return self.summary
-
