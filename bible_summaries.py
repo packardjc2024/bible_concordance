@@ -4,7 +4,6 @@ used in searching for specific chapters and verses.
 """
 
 import re
-from scraper import ScrapeHTMLBible
 
 
 class BookSummary:
