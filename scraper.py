@@ -57,11 +57,12 @@ class ScrapeHTMLBible:
         """
         Convert to a dictionary in the format:
         book_name: {verse_number: verse_text}
-        Note: Both books of kings included an extra p element before the first verse
+        Note: Several books included an extra p element before the first verse
         with extended name details that has to be cut out.
         """
         for name, verses in self.scraped_text.items():
-            if name in ('1 Kings', "2 Kings"):
+            if name in ('1 Kings', "2 Kings", "1 Samuel", "2 Samuel",
+                        "Ecclesiastes"):
                 verses = verses[2:]
             verses_dict = CleanBook(verses).return_dict()
             self.kjv_bible[name] = verses_dict
