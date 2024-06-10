@@ -12,6 +12,7 @@ the original test.
 When running the tests the program is set up to run in one of two ways:
 
 1. If pytest is called directly, the tests will be run one time for whichever
-source and book is in the config file. 
+source and book is in the config file. pytest must be called from the Testing
+directory.
 2. If the run_tests.py file is called, then the test will run one time each for
 using the html download and using requests with the url.

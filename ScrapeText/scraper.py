@@ -10,14 +10,14 @@ or by using requests for the link from the website.
 
 
 from bs4 import BeautifulSoup
-from shorten_names import ShortenNames
-from clean_book import CleanBook
+from ScrapeText.shorten_names import ShortenNames
+from ScrapeText.clean_book import CleanBook
 from pathlib import Path
 import requests
 
 
 class ScrapeHTMLBible:
-    def __init__(self, source="file",
+    def __init__(self, source="url",
                  file_path=Path.joinpath(Path.cwd(), 'bible.html'),
                  url=r"https://www.gutenberg.org/cache/epub/10/pg10-images.html"):
         self.source = source

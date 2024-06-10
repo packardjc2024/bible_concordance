@@ -10,6 +10,7 @@ from pathlib import Path
 from GUI.window import Window
 from GUI.verse_lookup import VerseLookup
 from GUI.word_lookup import WordLookup
+from ScrapeText.create_dictionaries import create_dictionaries
 
 
 def create_bible_dict(bible_path=Path.joinpath(Path.cwd(), 'kjv_bible.json')):
@@ -62,9 +63,24 @@ def create_gui_window(bible_dict, summary_dict, concordance_dict, testaments_dic
     root.initialize()
 
 
-if __name__ == '__main__':
+def main():
+    """
+    Starts the app if the app has already been set up.
+    """
     bible = create_bible_dict()
     summary = create_summary_dict()
     concordance = create_concordance()
     testaments = create_testaments_dict(bible)
     create_gui_window(bible, summary, concordance, testaments)
+
+
+if __name__ == '__main__':
+    if Path.exists(Path.joinpath(Path.cwd(), 'concordance.json')):
+        main()
+    else:
+        directory = Path.cwd()
+        create_dictionaries(directory)
+        main()
+
+
+
