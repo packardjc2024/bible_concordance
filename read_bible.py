@@ -8,6 +8,7 @@ to initialize the GUI.
 import json
 from pathlib import Path
 from window import Window
+from verse_lookup import VerseLookup
 
 
 # Read the three json files and get their dictionaries
@@ -31,4 +32,6 @@ testaments['New Testament'] = [key for key in list(kjv_bible.keys())[index:]]
 
 # Create the window
 root = Window(kjv_bible, summary, concordance, testaments)
+verse_lookup = VerseLookup(root)
+verse_lookup.initialize()
 root.initialize()

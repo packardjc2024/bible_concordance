@@ -7,7 +7,6 @@ from tkinter import ttk
 import textwrap
 import re
 
-
 class Window(Tk):
     def __init__(self, bible_dict, books_dict, concordance, testaments):
         super().__init__()
@@ -280,12 +279,6 @@ class Window(Tk):
         Creates the frame and entries and then starts the main loop.
         """
         self.configure_window()
-        self.create_search_frame()
-        self.create_verse_frame()
-        self.choose_testament()
-        self.choose_book()
-        self.choose_chapter()
-        self.choose_verse()
         self.create_word_search()
         self.create_results_frame()
         self.mainloop()
