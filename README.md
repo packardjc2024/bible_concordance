@@ -16,3 +16,7 @@ source and book is in the config file. pytest must be called from the Testing
 directory.
 2. If the run_tests.py file is called, then the test will run one time each for
 using the html download and using requests with the url.
+
+### External Libraries
+1. bs4 (beautiful soup)
+2. requests
