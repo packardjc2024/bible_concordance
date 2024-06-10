@@ -1,12 +1,14 @@
 """
 This module opens the json files that were created and reads them into
-dictionaries that will be used to read and search.
+dictionaries that will be used to read and search. It then calls the window
+to initialize the GUI.
 """
 
 
 import json
 from pathlib import Path
 from window import Window
+
 
 # Read the three json files and get their dictionaries
 bible_path = Path.joinpath(Path.cwd(), 'kjv_bible.json')
