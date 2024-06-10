@@ -13,7 +13,7 @@ from ScrapeText.scraper import ScrapeHTMLBible
 
 def run_test():
     """Runs the pytest in verbose mode."""
-    print(f"\n*****Running test for {source.upper()}.*****\n")
+    print(f"\n*****\tRunning test for {source.upper()}.\t*****\n")
     subprocess.run(['pytest', '--verbose'])
 
 

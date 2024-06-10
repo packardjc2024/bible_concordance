@@ -76,11 +76,9 @@ class WordLookup:
         """
         self.results_table = ttk.Treeview(self.results_frame,
                                           selectmode='browse', show='headings')
-        self.results_table['columns'] = ['Book', 'Verse']
+        self.results_table['columns'] = ['Verse']
         self.results_table.grid(row=2, column=0, sticky='NEWS')
-        self.results_table.heading(0, text='Book')
-        self.results_table.heading(1, text='Verse')
-        self.results_table.column(column='Book', width=95)
+        self.results_table.heading(0, text='Verse')
         self.results_table.column(column='Verse', width=95)
         self.results_table.bind('<<TreeviewSelect>>', self.select_row)
 
@@ -127,7 +125,7 @@ class WordLookup:
 
         verses = self.concordance[word]
         for verse in verses:
-            self.results_table.insert("", 'end', values=verse,
+            self.results_table.insert("", 'end', values=(verse,),
                                       text="")
 
     def select_row(self, *args):
@@ -139,10 +137,10 @@ class WordLookup:
         # Get the book name, chapter number, and verse number from the table.
         row = self.results_table.selection()[0]
         verse = self.results_table.item(row)['values']
-        book = verse[0]
-        location = re.search(r'(\d+):(\d+)', verse[1])
-        chapter = location.group(1)
-        verse = location.group(2)
+        location = re.search(r'(.*?)\s(\d+):(\d+)', verse[0])
+        book = location.group(1)
+        chapter = location.group(2)
+        verse = location.group(3)
 
         # Reset the string variables to populate the verse
         if book in self.testaments['Old Testament']:
