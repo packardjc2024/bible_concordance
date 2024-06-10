@@ -31,16 +31,16 @@ for key, value in book_summary_dict.items():
             concordance[word].extend([f"{key} {verse}" for verse in verse_list])
 
 # Save the bible dict to a json file
-bible_path = Path.joinpath(Path.cwd(), 'kjv_bible.json')
+bible_path = Path.joinpath(Path.cwd().parent, 'kjv_bible.json')
 with open(bible_path, 'w') as bible_file:
     json.dump(kjv_bible, bible_file)
 
 # Save the summary dict to a file
-summary_path = Path.joinpath(Path.cwd(), 'book_summary.json')
+summary_path = Path.joinpath(Path.cwd().parent, 'book_summary.json')
 with open(summary_path, 'w') as summary_file:
     json.dump(book_summary_dict, summary_file)
 
 # Save the concordance to a file:
-concordance_path = Path.joinpath(Path.cwd(), 'concordance.json')
+concordance_path = Path.joinpath(Path.cwd().parent, 'concordance.json')
 with open(concordance_path, 'w') as concordance_file:
     json.dump(concordance, concordance_file)

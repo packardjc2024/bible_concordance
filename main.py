@@ -7,9 +7,9 @@ and word and verse classes to initialize the GUI.
 
 import json
 from pathlib import Path
-from window import Window
-from verse_lookup import VerseLookup
-from word_lookup import WordLookup
+from GUI.window import Window
+from GUI.verse_lookup import VerseLookup
+from GUI.word_lookup import WordLookup
 
 
 def create_bible_dict(bible_path=Path.joinpath(Path.cwd(), 'kjv_bible.json')):
