@@ -35,15 +35,15 @@ class Window(Tk):
         self.rowconfigure(1, weight=1)
         self.columnconfigure(0, weight=1)
 
-    def create_top_frame(self):
+    def create_search_frame(self):
         """
         Creates the top frame for the window that will hold the search
         selection options.
         """
-        self.top_frame = Frame(self, borderwidth=2, relief='sunken')
-        self.top_frame.grid(row=0, padx=5, pady=5)
+        self.search_frame = Frame(self, borderwidth=2, relief='sunken')
+        self.search_frame.grid(row=0, padx=5, pady=5)
 
-        title = Label(self.top_frame, borderwidth=2, relief='raised',
+        title = Label(self.search_frame, borderwidth=2, relief='raised',
                       text='Select from the boxes below to search.', )
         title.grid(row=0, columnspan=2)
 
@@ -59,11 +59,11 @@ class Window(Tk):
         Creates the testament box which will be a traced stringvar to
         determine which books appear in the books combobox
         """
-        self.testament = StringVar(self.top_frame, value='Old Testament')
+        self.testament = StringVar(self.search_frame, value='Old Testament')
         self.testament.trace('w', self.choose_testament)
 
-        testament_label = Label(self.top_frame, text='Testament')
-        self.testament_box = ttk.Combobox(self.top_frame, values=['Old Testament',
+        testament_label = Label(self.search_frame, text='Testament')
+        self.testament_box = ttk.Combobox(self.search_frame, values=['Old Testament',
                                                                   'New Testament'],
                                           textvariable=self.testament)
         testament_label.grid(row=1, column=0)
@@ -73,11 +73,11 @@ class Window(Tk):
         """
         Creates the books combo box to choose which book to search.
         """
-        self.book_name = StringVar(self.top_frame, value='Genesis')
+        self.book_name = StringVar(self.search_frame, value='Genesis')
         self.book_name.trace('w', self.choose_book)
 
-        books_label = Label(self.top_frame, text='Book')
-        self.books = ttk.Combobox(self.top_frame, textvariable=self.book_name,
+        books_label = Label(self.search_frame, text='Book')
+        self.books = ttk.Combobox(self.search_frame, textvariable=self.book_name,
                                   values=[])
         books_label.grid(row=2, column=0)
         self.books.grid(row=2, column=1)
@@ -86,11 +86,11 @@ class Window(Tk):
         """
         Creates the combo box to choose the chapter
         """
-        self.chapter = StringVar(self.top_frame, value="1")
+        self.chapter = StringVar(self.search_frame, value="1")
         self.chapter.trace('w', self.choose_chapter)
 
-        chapters_label = Label(self.top_frame, text='Chapter')
-        self.chapters = ttk.Combobox(self.top_frame, textvariable=self.chapter,
+        chapters_label = Label(self.search_frame, text='Chapter')
+        self.chapters = ttk.Combobox(self.search_frame, textvariable=self.chapter,
                                      values=[])
         chapters_label.grid(row=3, column=0)
         self.chapters.grid(row=3, column=1)
@@ -99,11 +99,11 @@ class Window(Tk):
         """
         Creates the combo box to choose the start and stop verses
         """
-        self.start_verse = StringVar(self.top_frame, value="1")
+        self.start_verse = StringVar(self.search_frame, value="1")
         self.start_verse.trace('w', self.choose_verse)
 
-        start_verse_label = Label(self.top_frame, text='Verse')
-        self.verses = ttk.Combobox(self.top_frame, textvariable=self.start_verse,
+        start_verse_label = Label(self.search_frame, text='Verse')
+        self.verses = ttk.Combobox(self.search_frame, textvariable=self.start_verse,
                                    values=[])
         start_verse_label.grid(row=4, column=0)
         self.verses.grid(row=4, column=1)
@@ -163,7 +163,7 @@ class Window(Tk):
         Creates the frame and entries and then starts the main loop.
         """
         self.configure_window()
-        self.create_top_frame()
+        self.create_search_frame()
         self.create_bottom_frame()
         self.choose_testament()
         self.choose_book()
