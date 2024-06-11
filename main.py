@@ -1,7 +1,10 @@
 """
-This module opens the json files that were created and reads them into
-dictionaries that will be used to read and search. It then calls the window
-and word and verse classes to initialize the GUI.
+This module serves as the main program for the app. It contains the main
+function which reads the json files, creates a testament dictionary, and then
+creates the main window and passes it all the dictionaries. When called as the
+main program it first checks if a json concordance exists. If not it runs the
+setup modules to scrape the html and create the dictionaries and then calls the
+main function.
 """
 
 
@@ -13,65 +16,40 @@ from GUI.word_lookup import WordLookup
 from ScrapeText.create_dictionaries import create_dictionaries
 
 
-def create_bible_dict(bible_path=Path.joinpath(Path.cwd(), 'kjv_bible.json')):
+def main():
     """
-    Reads the JSON file and returns it as a dictionary.
+    Reads all the json files, converts them to a dictionary, creates the
+    testaments dictionary, and then creates the root window and passes the
+    dictionaries to start the app.
     """
+    # Read the bible json and convert to dictionary
+    bible_path = Path.joinpath(Path.cwd(), 'kjv_bible.json')
     with open(bible_path, 'r') as bible_file:
-        return json.load(bible_file)
+        bible =  json.load(bible_file)
 
-
-def create_summary_dict(summary_path=Path.joinpath(Path.cwd(), 'book_summary.json')):
-    """
-    Reads the JSON file and returns it as a dictionary.
-    """
+    # Read the summary json and convert to dictionary
+    summary_path = Path.joinpath(Path.cwd(), 'book_summary.json')
     with open(summary_path, 'r') as summary_file:
-        return json.load(summary_file)
+        summary =  json.load(summary_file)
 
-
-def create_concordance(concordance_path=Path.joinpath(Path.cwd(), 'concordance.json')):
-    """
-    Reads the JSON file and returns it as a dictionary.
-    """
+    # Read the concordance and convert to dictionary
+    concordance_path = Path.joinpath(Path.cwd(), 'concordance.json')
     with open(concordance_path, 'r') as concordance_file:
-        return json.load(concordance_file)
+        concordance = json.load(concordance_file)
 
-
-def create_testaments_dict(bible_dict):
-    """
-    Creates a dictionary with two keys. Each contains a list of the books in the
-    old and new testaments. This will be used for populating the testaments box in
-    the verse_lookup frame.
-    """
+    # Create the testaments dictionary
     testaments = {}
-    index = list(bible_dict.keys()).index('Matthew')
-    testaments['Old Testament'] = [key for key in list(bible_dict.keys())[:index]]
-    testaments['New Testament'] = [key for key in list(bible_dict.keys())[index:]]
-    return testaments
+    index = list(bible.keys()).index('Matthew')
+    testaments['Old Testament'] = [key for key in list(bible.keys())[:index]]
+    testaments['New Testament'] = [key for key in list(bible.keys())[index:]]
 
-
-def create_gui_window(bible_dict, summary_dict, concordance_dict, testaments_dict):
-    """
-    Creates the main window using all the necessary imported modules and passes
-    the values of all dictionaries to the root window.
-    """
-    root = Window(bible_dict, summary_dict, concordance_dict, testaments_dict)
+    # Create the window to start the app
+    root = Window(bible, summary, concordance, testaments)
     verse_lookup = VerseLookup(root)
     verse_lookup.initialize()
     word_lookup = WordLookup(root, verse_lookup)
     word_lookup.initialize()
     root.initialize()
-
-
-def main():
-    """
-    Starts the app if the app has already been set up.
-    """
-    bible = create_bible_dict()
-    summary = create_summary_dict()
-    concordance = create_concordance()
-    testaments = create_testaments_dict(bible)
-    create_gui_window(bible, summary, concordance, testaments)
 
 
 if __name__ == '__main__':
